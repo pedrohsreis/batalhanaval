@@ -15,8 +15,9 @@ public class Navio {
     int[] localizacao = new int[3];
     int contAcertos;
     boolean isDestroyed;
+    String nome;
     
-    Navio(){
+    Navio(String nome){
         Random rand = new Random();
         int posicao = rand.nextInt(17) + 1;
         localizacao[0] = posicao;
@@ -26,6 +27,7 @@ public class Navio {
             localizacao[i] = posicao;
             //System.out.println(localizacao[i]);
         }
+        this.nome = nome;
     }
     boolean verificaAcerto(int palpite){
         for(int i = 0; i < 3; i++){
@@ -43,6 +45,9 @@ public class Navio {
         else
             //System.out.println("O navio não foi destruido nessa rodada.");
         return false;
+    }
+    String getNomeNavio(){
+        return nome;
     }
     
 }

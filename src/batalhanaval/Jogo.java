@@ -29,7 +29,7 @@ public class Jogo {
             System.out.println("Verificando palpite...");
             verificaPalpite = navio.verificaAcerto(palpite);
             if(verificaPalpite){
-                System.out.println("Você acertou!\n");
+                System.out.println("Você acertou o navio: " + navio.getNomeNavio() + "\n");
             }else {
                 System.out.println("Você errou.\n");
             }
