@@ -19,13 +19,13 @@ public class Navio {
     
     Navio(String nome){
         Random rand = new Random();
-        int posicao = rand.nextInt(17) + 1;
+        int posicao = rand.nextInt(37) + 1;
         localizacao[0] = posicao;
-        //System.out.println(localizacao[0]);
+        System.out.println(localizacao[0]);
         for(int i = 1; i <= 2; i++){
             posicao++;
             localizacao[i] = posicao;
-            //System.out.println(localizacao[i]);
+            System.out.println(localizacao[i]);
         }
         this.nome = nome;
     }

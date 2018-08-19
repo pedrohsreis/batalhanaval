@@ -11,34 +11,46 @@ package batalhanaval;
  */
 public class Jogo {
     int numRodada = 0;
+    Tabuleiro tabuleiroj1 = new Tabuleiro();
+    Tabuleiro tabuleiroj2 = new Tabuleiro();
     
     Jogo() {
-        System.out.println("Existem 20 posições possíveis");
-        System.out.println("3 delas são ocupadas pelo navio");
-        System.out.println("Seu objetivo é afundar o navio, acertando as posições que ele ocupa\n");
+        System.out.println("Existem 40 posições possíveis");
+        System.out.println("Cada tabuleiro possui 5 navios diferentes, cada um ocupando 3 posições do tabuleiro");
+        System.out.println("Seu objetivo é afundar os navios do seu adversário, acertando as posições que eles ocupam\n");
     }
     
-    boolean rodadas(Navio navio, Jogador jogador){
+    boolean rodadas(Jogador jogador){
+        if(jogador.getOrdemPlayer() == 1 && tabuleiroj2.isTabuleiroLimpo())
+            return false;
+        if(jogador.getOrdemPlayer() == 2 && tabuleiroj1.isTabuleiroLimpo())
+            return false;
         numRodada++;
         System.out.println("Rodada " + numRodada);
         jogador.darPalpite();
         int palpite = jogador.getPalpite();
-        boolean verificaPalpite;
         
-        if(!navio.estaDestruido()){
-            System.out.println("Verificando palpite...");
-            verificaPalpite = navio.verificaAcerto(palpite);
-            if(verificaPalpite){
-                System.out.println("Você acertou o navio: " + navio.getNomeNavio() + "\n");
-            }else {
-                System.out.println("Você errou.\n");
+        if(jogador.getOrdemPlayer() == 1){
+            if(tabuleiroj2.acertouNavio(palpite)){
+                return true;
             }
         }
-        if(navio.estaDestruido()) {
-            System.out.println("O navio foi destruído, você venceu!");
-            return true;
+        if(jogador.getOrdemPlayer() == 2){
+            if(tabuleiroj1.acertouNavio(palpite)){
+                return true;
+            }
         }
-        return false;
+        return true;
     }
-    
+    boolean controleRodadas(){
+        if(tabuleiroj2.isTabuleiroLimpo()){
+            System.out.println("O jogador 1 venceu o jogo!");
+            return false;
+        }
+        if(tabuleiroj1.isTabuleiroLimpo()){
+            System.out.println("O jogador 2 venceu o jogo!");
+            return false;
+        }
+        return true;
+    }
 }

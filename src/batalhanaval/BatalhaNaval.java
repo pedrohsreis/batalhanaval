@@ -15,11 +15,20 @@ public class BatalhaNaval {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Navio navio = new Navio();
-        Jogador jogador = new Jogador("Pedro", 19);
+        Jogador jogador1 = new Jogador("Pedro", 19, 1);
+        Jogador jogador2 = new Jogador("João", 19, 2);
         Jogo jogo = new Jogo();
+        int cont = 1;
         
-        while(!jogo.rodadas(navio, jogador));
+        while(jogo.controleRodadas()){
+            if(cont % 2 == 0){
+                jogo.rodadas(jogador2);
+            }
+            if(cont % 2 != 0){
+                jogo.rodadas(jogador1);
+            }
+            cont++;
+        }
     }
     
 }
